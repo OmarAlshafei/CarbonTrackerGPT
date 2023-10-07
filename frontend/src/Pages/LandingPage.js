@@ -1,5 +1,5 @@
 
-import './LandingPage.css'; // Import your CSS file here
+import './LandingPage.css';
 import TypeEffect from '../Components/TypeEffect';
 
 function LandingPage() {
