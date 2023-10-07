@@ -80,6 +80,10 @@ h2,h3{
     color: #333333;
 }
 
+.infoContainer{
+    text-align: center;
+}
+
 button:hover {
     background-color: #1fac26;
     cursor: pointer;
@@ -96,4 +100,23 @@ button:active {
 
 #submitButton:active {
     background-color: #161616;
+}
+.milesHandler{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.miles {
+    background-color: white;
+    border: solid 1px;
+    border-left: none;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.largeInput {
+    font-size: 20px; /* Adjust the font size as needed */
+}
+  .vehicleSelect {
+    font-size: 20px; /* Adjust the font size to match the input element size */
 }

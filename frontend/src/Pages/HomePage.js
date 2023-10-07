@@ -1,78 +1,83 @@
-import { useState, useEffect } from 'react'
-import Card from '../Components/Card.js'
-import './HomePage.css'
-import ChatGPT from '../Components/ChatGPT.js';
-import { format } from 'react-string-format';
-// const axios = require('axios');
-// const app = express();
-var totalCarbonScore = '';
-//import suggestions from "./test.json"
+import React, { useState } from 'react';
+import Card from '../Components/Card.js';
+import './HomePage.css';
 
 function HomePage() {
-  const dayMap = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-  const [carbonScores, setCarbonScores] = useState([0,0,0,0,0,0,0])
-  const [currDay, setcurrDay] = useState(0)
-  const [currSuggestions, setCurSuggestions] = useState([])
-  const [currMiles, setCurrMiles] = useState(100)
-  const [currVehicle, setCurrVehicle] = useState('SmallDieselCar')
-  const [totalCarbonScore, setTotalCarbonScore] = useState(0); // Add totalCarbonScore state
-
-  // const titles = suggestions.map((suggestion) => suggestions.title);
+  const dayMap = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const [carbonScores, setCarbonScores] = useState([0, 0, 0, 0, 0, 0, 0]);
+  const [currDay, setCurrDay] = useState(0);
+  const [currMiles, setCurrMiles] = useState(100);
+  const [currVehicle, setCurrVehicle] = useState('SmallDieselCar');
+  const [totalCarbonScore, setTotalCarbonScore] = useState(0);
 
   const handleChange = (event) => {
     setCurrMiles(event.target.value);
-  }
+  };
 
-  function updateCarbonScore () {
-    const updatedCarbonScores = [...carbonScores]
+  const updateCarbonScore = () => {
+    const updatedCarbonScores = [...carbonScores];
     const xhr = new XMLHttpRequest();
     const url = `https://carbonfootprint1.p.rapidapi.com/CarbonFootprintFromCarTravel?distance=${currMiles}&vehicle=${currVehicle}`;
-    console.log(url)
+    
     xhr.open('GET', url);
-    xhr.setRequestHeader("X-RapidAPI-Key", "b4306ba6e6msh94925cf0c0d0330p1d7fa4jsn16de956e44ea"); 
+    xhr.setRequestHeader("X-RapidAPI-Key", "5d894876a2mshf6015305a4edd4bp1a67a0jsnf4ea105ad680");
     xhr.setRequestHeader("X-RapidAPI-Host", "carbonfootprint1.p.rapidapi.com");
-    xhr.onload = function() {
+    
+    xhr.onload = function () {
       if (xhr.status === 200) {
         const temp = JSON.parse(xhr.responseText);
-        // console.log(temp)
-        updatedCarbonScores[currDay] = currMiles
+        updatedCarbonScores[currDay] = currMiles;
         setCarbonScores(updatedCarbonScores);
         setTotalCarbonScore(totalCarbonScore + temp.carbonEquivalent);
       }
     };
+    
     xhr.send();
-  }
-  
+  };
+
   return (
     <div>
       <div className="homePage">
-        <div class = 'appTitle'>
+        <div className='appTitle'>
           <h1>Carbon Tracker <font color="2abe31">GPT</font></h1>
         </div>
         <div className="calendar">
-          <Card day={dayMap[0]} carbonScore={carbonScores[0]} func={setcurrDay} curDay={0}></Card>
-          <Card day={dayMap[1]} carbonScore={carbonScores[1]} func={setcurrDay} curDay={1}></Card>
-          <Card day={dayMap[2]} carbonScore={carbonScores[2]} func={setcurrDay} curDay={2}></Card>
-          <Card day={dayMap[3]} carbonScore={carbonScores[3]} func={setcurrDay} curDay={3}></Card>
-          <Card day={dayMap[4]} carbonScore={carbonScores[4]} func={setcurrDay} curDay={4}></Card>
-          <Card day={dayMap[5]} carbonScore={carbonScores[5]} func={setcurrDay} curDay={5}></Card>
-          <Card day={dayMap[6]} carbonScore={carbonScores[6]} func={setcurrDay} curDay={6}></Card>
+          {dayMap.map((day, index) => (
+            <Card key={index} day={day} carbonScore={carbonScores[index]} func={setCurrDay} curDay={index} />
+          ))}
         </div>
-        <h2 className="day">Enter Miles Traveled on: {dayMap[currDay]}</h2>
-        <div className="milesContainer">
-          <input onChange={handleChange}></input>
-          <h3>Miles</h3>
-          <button id="submitButton" className="submit" onClick={updateCarbonScore}>Submit</button>
+        <h2 className="day">Enter Miles Driven on: {dayMap[currDay]}</h2>
+        <div className="infoContainer">
+          <div className="milesHandler">
+          <input className='milesInput largeInput' type="number" value={currMiles} onChange={handleChange} />
+            <h3 className="miles">Miles</h3>
+          </div>
+          <div className="carHandler">
+            <h3>Your Car Is A: {currVehicle}</h3>
+            <select className='vehicleSelect' name="cars" id="cars" value={currVehicle} onChange={(e) => setCurrVehicle(e.target.value)}>
+              <option value="SmallPetrolCar">Small Gas Car</option>
+              <option value="MediumPetrolCar">Medium Gas Car</option>
+              <option value="LargePetrolCar">Large Gas Car</option>
+              <option value="SmallDieselCar">Small Diesel Car</option>
+              <option value="MediumDieselCar">Medium Diesel Car</option>
+              <option value="LargeDieselCar">Large Diesel Car</option>
+              <option value="MediumHybridCar">Medium Hybrid Car</option>
+              <option value="LargeHybridCar">Large Hybrid Car</option>
+              <option value="SmallPetrolVan">Small Gas Van</option>
+              <option value="LargePetrolVan">Large Gas Van</option>
+              <option value="SmallDielselVan">Small Dielsel Van</option>
+              <option value="MediumDielselVan">Medium Dielsel Van</option>
+              <option value="LargeDielselVan">Large Dielsel Van</option>
+            </select>
+          </div>
         </div>
+          <button className="submit" onClick={updateCarbonScore}>Submit</button>
         <div className="carbonScoreContainer">
           <h3>Carbon Score: {totalCarbonScore}</h3>
-          
         </div>
-        
       </div>
-      <ChatGPT/>
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;
