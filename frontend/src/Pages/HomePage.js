@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Card from '../Components/Card.js';
+import ChatGPT from '../Components/ChatGPT.js';
 import './HomePage.css';
 
 function HomePage() {
@@ -75,6 +76,7 @@ function HomePage() {
           <h3>Carbon Score: {totalCarbonScore.toFixed(2)}</h3>
         </div>
       </div>
+      <ChatGPT/>
     </div>
   );
 }

@@ -20,7 +20,9 @@ app.post("/api/chatGPT", async (req, res) => {
     messages: [{"role": "user", "content": "Hello!"}],
   });
 
-  res.json({ message: chatCompletion });
+
+
+  res.json({ message: chatCompletion.choices[0].message });
 });
 
 app.listen(8000, () => {
