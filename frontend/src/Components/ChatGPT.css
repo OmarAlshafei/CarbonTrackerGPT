@@ -7,8 +7,9 @@
 #responseGPT{
     color: white;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 50px;
     line-height: 30px;
+    padding-bottom: 50px;
 }
 
 #textboxGPT{
