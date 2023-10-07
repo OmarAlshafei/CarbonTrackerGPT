@@ -52,7 +52,7 @@ function HomePage() {
           <input className='milesInput' type="number" value={currMiles} onChange={handleChange} />
           </div>
           <div className="carHandler">
-            <h3>Your Car Is A: {currVehicle}</h3>
+            <h3>Select Your Car:</h3>
             <select className='vehicleSelect' name="cars" id="cars" value={currVehicle} onChange={(e) => setCurrVehicle(e.target.value)}>
               <option value="SmallPetrolCar">Small Gas Car</option>
               <option value="MediumPetrolCar">Medium Gas Car</option>
@@ -70,7 +70,7 @@ function HomePage() {
             </select>
           </div>
         </div>
-          <button className="submit" onClick={updateCarbonScore}>Submit</button>
+          <button id="submitButton" className="submit" onClick={updateCarbonScore}>Submit</button>
         <div className="carbonScoreContainer">
           <h3>Carbon Score: {totalCarbonScore}</h3>
         </div>
