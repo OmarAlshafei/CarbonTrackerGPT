@@ -1,6 +1,6 @@
 import { useState } from 'react'
-// import './App.css'
-//import Card from './components/Card.jsx'
+import Card from '../Components/Card.js'
+import './HomePage.css'
 //import suggestions from "./test.json"
 
 function HomePage() {
@@ -15,30 +15,30 @@ function HomePage() {
     setCurrMiles(event.target.value);
   }
 
-  /*const updateCarbonScore = () => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://api.example.com/data');
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        setData(JSON.parse(xhr.responseText));
-      }
-    };
-    xhr.send();
-    updatedCarbonScores = [...carbonScores]
-    updatedCarbonScores[currDay] =  
-    setCarbonScores(updateCarbonScores)
-  }*/
+  // const updateCarbonScore = () => {
+  //   const xhr = new XMLHttpRequest();
+  //   xhr.open('GET', 'https://api.example.com/data');
+  //   xhr.onload = function() {
+  //     if (xhr.status === 200) {
+  //       setData(JSON.parse(xhr.responseText));
+  //     }
+  //   };
+  //   xhr.send();
+  //   updatedCarbonScores = [...carbonScores]
+  //   updatedCarbonScores[currDay] =  
+  //   setCarbonScores(updateCarbonScores)
+  // }
 
   return (
     <div>
       <div className="calendar">
-        {/* <Card day={dayMap[0]} carbonScore={carbonScores[0]}></Card> */}
-        {/* <Card day={dayMap[1]} carbonScore={carbonScores[1]}></Card> */}
-        {/* <Card day={dayMap[2]} carbonScore={carbonScores[2]}></Card> */}
-        {/* <Card day={dayMap[3]} carbonScore={carbonScores[3]}></Card> */}
-        {/* <Card day={dayMap[4]} carbonScore={carbonScores[4]}></Card> */}
-        {/* <Card day={dayMap[5]} carbonScore={carbonScores[5]}></Card> */}
-        {/* <Card day={dayMap[6]} carbonScore={carbonScores[6]}></Card> */}
+        <Card day={dayMap[0]} carbonScore={carbonScores[0]}></Card>
+        <Card day={dayMap[1]} carbonScore={carbonScores[1]}></Card>
+        <Card day={dayMap[2]} carbonScore={carbonScores[2]}></Card>
+        <Card day={dayMap[3]} carbonScore={carbonScores[3]}></Card>
+        <Card day={dayMap[4]} carbonScore={carbonScores[4]}></Card>
+        <Card day={dayMap[5]} carbonScore={carbonScores[5]}></Card>
+        <Card day={dayMap[6]} carbonScore={carbonScores[6]}></Card>
       </div>
       <h2 className="day">Today is {currDay}</h2>
       <div className="milesContainer">
