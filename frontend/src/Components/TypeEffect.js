@@ -5,7 +5,7 @@ function TypeEffect() {
     useEffect(() => {
       // JavaScript code here
       const dynamicText = document.querySelector("h1 span");
-      const words = ["App", "Calculator", "GPT"];
+      const words = ["App", "Tool", "GPT"];
   
       // Variables to track the position and deletion status of the word
       let wordIndex = 0;

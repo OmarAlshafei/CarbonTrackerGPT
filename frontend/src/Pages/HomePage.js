@@ -3,11 +3,11 @@ import Card from '../Components/Card.js';
 import './HomePage.css';
 
 function HomePage() {
-  const dayMap = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const dayMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const [carbonScores, setCarbonScores] = useState([0, 0, 0, 0, 0, 0, 0]);
-  const [currDay, setCurrDay] = useState(0);
-  const [currMiles, setCurrMiles] = useState(100);
-  const [currVehicle, setCurrVehicle] = useState('SmallDieselCar');
+  const [currDay, setCurrDay] = useState();
+  const [currMiles, setCurrMiles] = useState();
+  const [currVehicle, setCurrVehicle] = useState('SmallPetrolCar');
   const [totalCarbonScore, setTotalCarbonScore] = useState(0);
 
   const handleChange = (event) => {
@@ -20,7 +20,7 @@ function HomePage() {
     const url = `https://carbonfootprint1.p.rapidapi.com/CarbonFootprintFromCarTravel?distance=${currMiles}&vehicle=${currVehicle}`;
     
     xhr.open('GET', url);
-    xhr.setRequestHeader("X-RapidAPI-Key", "5d894876a2mshf6015305a4edd4bp1a67a0jsnf4ea105ad680");
+    xhr.setRequestHeader("X-RapidAPI-Key", "598410b6b1msh0c48f37c4144c83p171540jsnd394e28228cc");
     xhr.setRequestHeader("X-RapidAPI-Host", "carbonfootprint1.p.rapidapi.com");
     
     xhr.onload = function () {
@@ -52,7 +52,7 @@ function HomePage() {
           <input className='milesInput' type="number" value={currMiles} onChange={handleChange} />
           </div>
           <div className="carHandler">
-            <h3>Your Car Is A: {currVehicle}</h3>
+            <h3>Select Your Vehicle Type</h3>
             <select className='vehicleSelect' name="cars" id="cars" value={currVehicle} onChange={(e) => setCurrVehicle(e.target.value)}>
               <option value="SmallPetrolCar">Small Gas Car</option>
               <option value="MediumPetrolCar">Medium Gas Car</option>
@@ -72,7 +72,7 @@ function HomePage() {
         </div>
           <button className="submit" onClick={updateCarbonScore}>Submit</button>
         <div className="carbonScoreContainer">
-          <h3>Carbon Score: {totalCarbonScore}</h3>
+          <h3>Carbon Score: {totalCarbonScore.toFixed(2)}</h3>
         </div>
       </div>
     </div>
