@@ -38,10 +38,11 @@ function HomePage() {
 
   return (
     <div>
-      <div className="homePage">
+      
         <div className='appTitle'>
           <h1>Carbon Tracker <font color="2abe31">GPT</font></h1>
         </div>
+        <div className="homePage">
         <div className="calendar">
           {dayMap.map((day, index) => (
             <Card key={index} day={day} carbonScore={carbonScores[index]} func={setCurrDay} curDay={index} />
