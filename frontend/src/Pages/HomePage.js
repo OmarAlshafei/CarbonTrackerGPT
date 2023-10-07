@@ -70,7 +70,7 @@ function HomePage() {
             </select>
           </div>
         </div>
-          <button className="submit" onClick={updateCarbonScore}>Submit</button>
+          <button id="submitButton" className="submit" onClick={updateCarbonScore}>Submit</button>
         <div className="carbonScoreContainer">
           <h3>Carbon Score: {totalCarbonScore.toFixed(2)}</h3>
         </div>
