@@ -9,3 +9,8 @@
     text-align: center;
     padding-top: 15px;
 }
+
+#textboxGPT{
+    width: 1000px;
+    margin: auto;
+}

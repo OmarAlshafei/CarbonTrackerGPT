@@ -31,7 +31,9 @@ function ChatGPT(props){
     return(
         <div id="ChatGPT">
             <h1 id="chatGPTTitle">Here's how you can help.</h1>
-            <p id="responseGPT">{responseGPT.content}</p>
+            <div id= "textboxGPT">
+                <p id="responseGPT">{responseGPT.content}</p>
+            </div>
         </div>
     );
 }
