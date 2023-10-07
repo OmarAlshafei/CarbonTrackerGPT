@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+#startButton{
+    display:flex;
+    top: 50vh;
+    left: 50vw;
+    height: 50px;
+    border:2px solid #2abe31;
+    width: 150px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+#buttonText{
+    margin:auto;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+}
+
+#buttonWrapper{
+    padding-top: 30px;
+}
+
+#startButton:hover{
+    background-color: #2abe31;
+    cursor:pointer;
+
+}
