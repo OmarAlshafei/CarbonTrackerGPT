@@ -49,8 +49,7 @@ function HomePage() {
         <h2 className="day">Enter Miles Driven on: {dayMap[currDay]}</h2>
         <div className="infoContainer">
           <div className="milesHandler">
-          <input className='milesInput largeInput' type="number" value={currMiles} onChange={handleChange} />
-            <h3 className="miles">Miles</h3>
+          <input className='milesInput' type="number" value={currMiles} onChange={handleChange} />
           </div>
           <div className="carHandler">
             <h3>Your Car Is A: {currVehicle}</h3>

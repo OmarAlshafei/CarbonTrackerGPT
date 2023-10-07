@@ -101,22 +101,23 @@ button:active {
 #submitButton:active {
     background-color: #161616;
 }
-.milesHandler{
-    display: flex;
-    margin-bottom: 10px;
-}
 
-.miles {
+.milesInput {
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;
+}
+.vehicleSelect {
     background-color: white;
-    border: solid 1px;
-    border-left: none;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-.largeInput {
-    font-size: 20px; /* Adjust the font size as needed */
-}
-  .vehicleSelect {
-    font-size: 20px; /* Adjust the font size to match the input element size */
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;
 }
