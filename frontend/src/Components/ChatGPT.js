@@ -1,7 +1,7 @@
 import './ChatGPT.css';
 import React, {useEffect, useState} from 'react';
 
-function ChatGPT(prompt){
+function ChatGPT(props){
     
     const [responseGPT, setResponseGPT] = useState([]);
 
@@ -17,7 +17,7 @@ function ChatGPT(prompt){
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                prompt: prompt
+                prompt: props.prompt
             }),
         });
 
