@@ -36,12 +36,17 @@
     padding: 15px 30px;
     background: #333333;
     border: none;
-    border-radius: 4px;
+    height: 50px;
+    width: 150px;
+    border-radius: 20px;
     font-size: 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     margin: 10px 0;
+    text-align: center;
+    top: 50vh;
+    left: 50vw;
   }
 .card {
     width: 10em;

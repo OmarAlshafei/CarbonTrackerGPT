@@ -42,7 +42,7 @@ function HomePage() {
   return (
     <div className="homePage">
       <div class = 'appTitle'>
-        <h1>Carbon Tracker GPT</h1>
+        <h1>Carbon Tracker <font color="2abe31">GPT</font></h1>
       </div>
       <div className="calendar">
         <Card day={dayMap[0]} carbonScore={carbonScores[0]} func={setcurrDay} curDay={0}></Card>
