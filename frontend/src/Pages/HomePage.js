@@ -37,11 +37,11 @@ function HomePage() {
   };
 
   return (
-    <div>
+    <div id = "HomePage">
       
-        <div className='appTitle'>
-          <h1>Carbon Tracker <font color="2abe31">GPT</font></h1>
-        </div>
+      <div className='appTitle'>
+          <h1 id="titleHome">Carbon Tracker <font color="2abe31">GPT</font></h1>
+      </div>
         <div className="homePage">
         <div className="calendar">
           {dayMap.map((day, index) => (
