@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Card from '../Components/Card.js'
 import './HomePage.css'
 import { format } from 'react-string-format';
 // const axios = require('axios');
 // const app = express();
-
+var totalCarbonScore = '';
 //import suggestions from "./test.json"
 
 function HomePage() {
@@ -14,6 +14,8 @@ function HomePage() {
   const [currSuggestions, setCurSuggestions] = useState([])
   const [currMiles, setCurrMiles] = useState(100)
   const [currVehicle, setCurrVehicle] = useState('SmallDieselCar')
+  const [totalCarbonScore, setTotalCarbonScore] = useState(0); // Add totalCarbonScore state
+
   // const titles = suggestions.map((suggestion) => suggestions.title);
 
   const handleChange = (event) => {
@@ -26,14 +28,15 @@ function HomePage() {
     const url = `https://carbonfootprint1.p.rapidapi.com/CarbonFootprintFromCarTravel?distance=${currMiles}&vehicle=${currVehicle}`;
     console.log(url)
     xhr.open('GET', url);
-    xhr.setRequestHeader("X-RapidAPI-Key", "c8978ec990msh123912b707b02b7p159836jsn73eac02d58f3"); 
+    xhr.setRequestHeader("X-RapidAPI-Key", "b4306ba6e6msh94925cf0c0d0330p1d7fa4jsn16de956e44ea"); 
     xhr.setRequestHeader("X-RapidAPI-Host", "carbonfootprint1.p.rapidapi.com");
     xhr.onload = function() {
       if (xhr.status === 200) {
         const temp = JSON.parse(xhr.responseText);
         // console.log(temp)
-        updatedCarbonScores[currDay] = temp.carbonEquivalent
+        updatedCarbonScores[currDay] = currMiles
         setCarbonScores(updatedCarbonScores);
+        setTotalCarbonScore(totalCarbonScore + temp.carbonEquivalent);
       }
     };
     xhr.send();
@@ -60,7 +63,7 @@ function HomePage() {
         <button className="submit" onClick={updateCarbonScore}>Submit</button>
       </div>
       <div className="carbonScoreContainer">
-        <h3>Carbon Score: {carbonScores[currDay]}</h3>
+        <h3>Carbon Score: {totalCarbonScore}</h3>
         
       </div>
       
