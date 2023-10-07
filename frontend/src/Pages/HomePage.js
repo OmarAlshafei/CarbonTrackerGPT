@@ -8,7 +8,7 @@ import { format } from 'react-string-format';
 //import suggestions from "./test.json"
 
 function HomePage() {
-  const dayMap = ["Mon", "Tues", "Wed", "Thu", "Fri", "Sat", "Sun"]
+  const dayMap = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   const [carbonScores, setCarbonScores] = useState([0,0,0,0,0,0,0])
   const [currDay, setcurrDay] = useState(0)
   const [currSuggestions, setCurSuggestions] = useState([])
