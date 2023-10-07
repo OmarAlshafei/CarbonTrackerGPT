@@ -36,7 +36,9 @@ function TypeEffect() {
     }, []);
   
     return (
+      <div id= "TypeEffect">
           <h1 className="h1-class">Carbon Tracker <span className="span-class"></span></h1>
+      </div>
     );
 }
 
