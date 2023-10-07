@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Card from '../Components/Card.js'
 import './HomePage.css'
+import ChatGPT from '../Components/ChatGPT.js';
 import { format } from 'react-string-format';
 // const axios = require('axios');
 // const app = express();
@@ -43,30 +44,33 @@ function HomePage() {
   }
   
   return (
-    <div className="homePage">
-      <div class = 'appTitle'>
-        <h1>Carbon Tracker <font color="2abe31">GPT</font></h1>
-      </div>
-      <div className="calendar">
-        <Card day={dayMap[0]} carbonScore={carbonScores[0]} func={setcurrDay} curDay={0}></Card>
-        <Card day={dayMap[1]} carbonScore={carbonScores[1]} func={setcurrDay} curDay={1}></Card>
-        <Card day={dayMap[2]} carbonScore={carbonScores[2]} func={setcurrDay} curDay={2}></Card>
-        <Card day={dayMap[3]} carbonScore={carbonScores[3]} func={setcurrDay} curDay={3}></Card>
-        <Card day={dayMap[4]} carbonScore={carbonScores[4]} func={setcurrDay} curDay={4}></Card>
-        <Card day={dayMap[5]} carbonScore={carbonScores[5]} func={setcurrDay} curDay={5}></Card>
-        <Card day={dayMap[6]} carbonScore={carbonScores[6]} func={setcurrDay} curDay={6}></Card>
-      </div>
-      <h2 className="day">Enter Miles Driven on: {dayMap[currDay]}</h2>
-      <div className="milesContainer">
-        <input onChange={handleChange}></input>
-        <h3>Miles</h3>
-        <button className="submit" onClick={updateCarbonScore}>Submit</button>
-      </div>
-      <div className="carbonScoreContainer">
-        <h3>Carbon Score: {totalCarbonScore}</h3>
+    <div>
+      <div className="homePage">
+        <div class = 'appTitle'>
+          <h1>Carbon Tracker <font color="2abe31">GPT</font></h1>
+        </div>
+        <div className="calendar">
+          <Card day={dayMap[0]} carbonScore={carbonScores[0]} func={setcurrDay} curDay={0}></Card>
+          <Card day={dayMap[1]} carbonScore={carbonScores[1]} func={setcurrDay} curDay={1}></Card>
+          <Card day={dayMap[2]} carbonScore={carbonScores[2]} func={setcurrDay} curDay={2}></Card>
+          <Card day={dayMap[3]} carbonScore={carbonScores[3]} func={setcurrDay} curDay={3}></Card>
+          <Card day={dayMap[4]} carbonScore={carbonScores[4]} func={setcurrDay} curDay={4}></Card>
+          <Card day={dayMap[5]} carbonScore={carbonScores[5]} func={setcurrDay} curDay={5}></Card>
+          <Card day={dayMap[6]} carbonScore={carbonScores[6]} func={setcurrDay} curDay={6}></Card>
+        </div>
+        <h2 className="day">Enter Miles Driven on: {dayMap[currDay]}</h2>
+        <div className="milesContainer">
+          <input onChange={handleChange}></input>
+          <h3>Miles</h3>
+          <button className="submit" onClick={updateCarbonScore}>Submit</button>
+        </div>
+        <div className="carbonScoreContainer">
+          <h3>Carbon Score: {totalCarbonScore}</h3>
+          
+        </div>
         
       </div>
-      
+      <ChatGPT/>
     </div>
   )
 }
