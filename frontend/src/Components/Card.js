@@ -6,7 +6,7 @@ function Card(props) {
     return (
         <button className="card" onClick={changeDay}>
             <h2>{props.day}</h2>
-            <p>{props.carbonScore}</p>
+            <p>{props.miles}</p>
         </button>
     );
 }
