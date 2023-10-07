@@ -12,6 +12,8 @@
 
 #buttonText{
     margin:auto;
+    padding-top: 12px;
+    
     color: white;
     font-family: "Inter", sans-serif;
     font-weight: 600;
@@ -19,10 +21,17 @@
 
 #buttonWrapper{
     padding-top: 30px;
+    
 }
 
 #startButton:hover{
     background-color: #2abe31;
     cursor:pointer;
 
+}
+
+#LinktoHome{
+    height: 50px;
+    width: 150px;
+    text-decoration: none;
 }

@@ -10,9 +10,9 @@ function LandingPage() {
         <div>
             <TypeEffect/>
             <div id="buttonWrapper">
-                <Link to="/home">
-                    <div id="startButton"><p id = "buttonText">Start</p></div>
-                </Link>
+                
+                    <div id="startButton"><Link to="/home" id="LinktoHome"><p id = "buttonText">Start</p></Link></div>
+                
             </div>
         </div>
   );
