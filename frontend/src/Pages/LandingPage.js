@@ -1,5 +1,6 @@
 
 import './LandingPage.css';
+import {Link} from 'react-router-dom';
 import TypeEffect from '../Components/TypeEffect';
 
 function LandingPage() {
@@ -9,7 +10,9 @@ function LandingPage() {
         <div>
             <TypeEffect/>
             <div id="buttonWrapper">
-                <div id="startButton"><p id = "buttonText">Start</p></div>
+                <Link to="/home">
+                    <div id="startButton"><p id = "buttonText">Start</p></div>
+                </Link>
             </div>
         </div>
   );
