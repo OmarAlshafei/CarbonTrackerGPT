@@ -58,11 +58,11 @@ function HomePage() {
           <Card day={dayMap[5]} carbonScore={carbonScores[5]} func={setcurrDay} curDay={5}></Card>
           <Card day={dayMap[6]} carbonScore={carbonScores[6]} func={setcurrDay} curDay={6}></Card>
         </div>
-        <h2 className="day">Enter Miles Driven on: {dayMap[currDay]}</h2>
+        <h2 className="day">Enter Miles Traveled on: {dayMap[currDay]}</h2>
         <div className="milesContainer">
           <input onChange={handleChange}></input>
           <h3>Miles</h3>
-          <button className="submit" onClick={updateCarbonScore}>Submit</button>
+          <button id="submitButton" className="submit" onClick={updateCarbonScore}>Submit</button>
         </div>
         <div className="carbonScoreContainer">
           <h3>Carbon Score: {totalCarbonScore}</h3>
