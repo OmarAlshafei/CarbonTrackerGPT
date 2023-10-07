@@ -77,7 +77,9 @@ function HomePage() {
           <h3>Carbon Score: {totalCarbonScore.toFixed(2)}</h3>
         </div>
       </div>
+      <div>
       <ChatGPT prompt={"How can I reduce my personal carbon emissions?"}></ChatGPT>
+      </div>
     </div>
   );
 }
