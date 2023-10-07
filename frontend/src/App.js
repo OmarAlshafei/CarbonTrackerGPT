@@ -1,10 +1,12 @@
 import './App.css';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import LandingPage from './Pages/LandingPage';
+import HomePage from './Pages/HomePage';
 
 
 const router = createBrowserRouter([
-  {path: '/', element: <HomePage/>}
+  {path: '/', element: <LandingPage/>},
+  {path: '/home', element: <HomePage/>}
 ]);
 
 function App() {
