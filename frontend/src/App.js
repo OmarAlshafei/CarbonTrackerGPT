@@ -4,7 +4,7 @@ import LandingPage from './Pages/LandingPage';
 
 
 const router = createBrowserRouter([
-  {path: '/', element: <LandingPage/>}
+  {path: '/', element: <HomePage/>}
 ]);
 
 function App() {
