@@ -15,33 +15,33 @@ body {
     background: #1D1E23;
 }
 
-h1 {
-    color: #fff;
-    font-size: 2rem;
-    font-weight: 600;
+.h1-class {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 600;
 }
 
-h1 span {
-    color: #2abe31;
-    position: relative;
+.span-class {
+  color: #2abe31;
+  position: relative;
 }
 
-h1 span::before {
-    content: "";
-    height: 30px;
-    width: 2px;
-    position: absolute;
-    top: 50%;
-    right: -8px;
-    background: #2abe31;
-    transform: translateY(-45%);
-    animation: blink 0.7s infinite;
+.span-class::before {
+  content: "";
+  height: 55px;
+  width: 2px;
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  background: #2abe31;
+  transform: translateY(-45%);
+  animation: blink 0.7s infinite;
 }
 
-h1 span.stop-blinking::before {
-    animation: none;
+.span-class.stop-blinking::before {
+  animation: none;
 }
 
 @keyframes blink {
-    50% { opacity: 0 }
+  50% { opacity: 0 }
 }
