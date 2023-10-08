@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Card from '../Components/Card.js';
 import './HomePage.css';
 import axios from 'axios';
@@ -16,8 +16,11 @@ function HomePage() {
     const [responseGPT, setResponseGPT] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [buttonClicked, setButtonClicked] = useState(false); 
+    const responseRef = useRef(null);
+    const [carbonEmissions, setCarbonEmissions] = useState([]);
   
-    
+   
+
   const handleChange = (event) => {
     setCurrMiles(parseInt(event.target.value));
   };
@@ -42,6 +45,10 @@ function HomePage() {
      totalMiles += miles[i];
     }
 
+    if (responseRef.current) {
+      responseRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+
     console.log(totalMiles);
     const response = await fetch('http://localhost:8000/api/CarbonEmissions',{
             method: 'POST',
@@ -57,10 +64,9 @@ function HomePage() {
 
     const datacarbon = await response.json()
     
-    console.log(datacarbon.data);
+    console.log(datacarbon.data.data.co2e_kg);
+    setCarbonEmissions(datacarbon.data.data.co2e_kg);
 
-
-    
     setIsLoading(true);
       setButtonClicked(true); 
   
@@ -70,14 +76,13 @@ function HomePage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          prompt: "Based on my carbon emissions from driving a "+ currModel + " "+currMake+" from the past week which is "+ datacarbon.data.co2e_kg +"co2e kg tell me whether that is high or low on average and tell me steps to improve in 100 words",
+          prompt: `Based on my carbon emissions from driving a ${currMake} ${currModel} from the past week which is ${datacarbon.data.data.co2e_kg} co2e kg tell me whether that is high or low on average based on the average weekly emission being around 95.75 co2e kg and also whether or not i have a carbon emission friendly car and tell me steps to improve in 100 words`,
         }),
       });
   
       const data = await responseGPT.json();
       console.log(data);
       setResponseGPT(data.message.content);
-  
       setIsLoading(false);
     // const encodedParams = new URLSearchParams();
     // encodedParams.set('vehicle_make', currMake);
@@ -133,7 +138,7 @@ function HomePage() {
           <h3>Carbon Score: {totalCarbonScore.toFixed(2)}</h3>
         </div>
       </div>
-      <div id="borderGPT">
+      <div id="borderGPT" ref={responseRef}>
         <h1 id="chatGPTTitle">Based on your carbon score here's how GPT can help you.</h1>
         <div id="insideBorderGPT">
           
