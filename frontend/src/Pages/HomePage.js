@@ -55,7 +55,9 @@ function HomePage() {
             }),
     });
 
-    console.log(response);
+    const datacarbon = await response.json()
+    
+    console.log(datacarbon.data);
     
     setIsLoading(true);
       setButtonClicked(true); 

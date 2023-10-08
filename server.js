@@ -65,7 +65,7 @@ app.post("/api/CarbonEmissions", async (req, res, next)=>{
   try {
     const response = await axios.request(options);
     console.log(response.data);
-    res.json({response: response.data});
+    res.status(200).json({data: response.data});
   } catch (error) {
     console.error(error);
   }
