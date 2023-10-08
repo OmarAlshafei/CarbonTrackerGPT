@@ -22,6 +22,7 @@ app.use((req, res, next) =>
 
 require('dotenv').config();
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.set('port', (process.env.PORT || 8000));
 app.use(express.json());
 

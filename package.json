@@ -1,6 +1,10 @@
 {
   
-
+  "scripts": {
+    "start": "node index.js",
+    "digitalocean-build": "cd client && npm install && npm run build"
+  },
+  
   "dependencies": {
   
 
