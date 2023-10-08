@@ -131,7 +131,7 @@ function HomePage() {
         
         <div id="ChatGPT">
         {isLoading ? (
-          <h1 id="loadingGPT">Loading...</h1>
+          <><div class="lds-ring"><div></div><div></div><div></div><div></div></div></>
         ) : (
         responseGPT && (
           <div id="textboxGPT">
