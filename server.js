@@ -21,6 +21,7 @@ app.use((req, res, next) =>
 
 require('dotenv').config();
 app.use(cors());
+app.set('port', (process.env.PORT || 8000));
 app.use(express.json());
 
 app.post("/api/chatGPT", async (req, res) => {
@@ -72,7 +73,7 @@ app.post("/api/CarbonEmissions", async (req, res, next)=>{
 });
 
 
-app.listen(8000, () => {
-  console.log('Server is running on port 8000.');
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}.`);
 });
 
