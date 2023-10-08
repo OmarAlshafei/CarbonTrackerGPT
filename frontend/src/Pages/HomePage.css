@@ -178,7 +178,7 @@ button:active {
 
 #borderGPT {
     width: 75%;
-    height: 900px;
+    height: 600px;
     background-color: #f0f0f0;
     margin: 80px auto;
     display: flex;
@@ -233,7 +233,7 @@ button:active {
 }
 
 #loadingGPT {
-    margin-top: 350px;
+    margin-top: 200px;
     color: #f0f0f0;
 }
 
