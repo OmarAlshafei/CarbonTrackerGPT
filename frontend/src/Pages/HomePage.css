@@ -169,7 +169,7 @@ button:active {
     padding-top: 50px;
     line-height: 35px;
     padding-bottom: 50px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 #textboxGPT{
@@ -179,7 +179,7 @@ button:active {
 
 #borderGPT {
     width: 75%;
-    height: 700px;
+    height: 650px;
     background-color: #f0f0f0;
     margin: 80px auto;
     display: flex;
@@ -274,7 +274,7 @@ button:active {
     position: relative;
     width: 80px;
     height: 80px;
-    margin-top: 180px;
+    margin-top: 200px;
   }
   .lds-ring div {
     box-sizing: border-box;
