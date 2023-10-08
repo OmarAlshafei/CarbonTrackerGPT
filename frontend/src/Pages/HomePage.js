@@ -65,7 +65,7 @@ function HomePage() {
 
     
 
-    document.getElementById("emissionDesc").innerText = "Your carbon emissions from the past week are "+ datacarbon.data.data.co2e_kg +"CO2E kg. Your carbon emissions in a year will be "+datacarbon.data.data.co2e_kg * 52 +"CO2E kg. This is equivalent to "+(datacarbon.data.data.co2e_kg * 52)/1900+" cars in mass. This also does not factor the amount of carbon emissions from your consumption of food, electricity, or goods and services. The average person from the United States emits 16 metric tons of carbon emissions per year.  ";
+    document.getElementById("emissionDesc").innerText = "Your carbon emissions from the past week are " + datacarbon.data.data.co2e_kg.toFixed(2) + " CO2E kg. Your carbon emissions in a year will be " + (datacarbon.data.data.co2e_kg * 52).toFixed(2) + " CO2E kg. This is equivalent to " + ((datacarbon.data.data.co2e_kg * 52) / 1900).toFixed(2) + " cars in mass. This also does not factor the amount of carbon emissions from your consumption of food, electricity, or goods and services. The average person from the United States emits 16 metric tons of carbon emissions per year.";
     document.getElementById("emissionAmount").innerText = datacarbon.data.data.co2e_kg + " CO2E kg";
 
     if (responseRef.current) {
