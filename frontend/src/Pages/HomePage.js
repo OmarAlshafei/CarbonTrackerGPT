@@ -70,7 +70,7 @@ function HomePage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          prompt: "Based on my carbon emissions from driving from the past week which is "+ datacarbon.data.co2e_kg +" tell me whether that is high or low on average and tell me steps to improve in 300 words",
+          prompt: "Based on my carbon emissions from driving a "+ currModel + " "+currMake+" from the past week which is "+ datacarbon.data.co2e_kg +"co2e kg tell me whether that is high or low on average and tell me steps to improve in 100 words",
         }),
       });
   
