@@ -3,6 +3,21 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const OpenAI = require('openai');
+const axios = require('axios');
+app.use(cors());
+app.use((req, res, next) =>
+{
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+  'Access-Control-Allow-Headers',
+  'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.setHeader(
+  'Access-Control-Allow-Methods',
+  'GET, POST, PATCH, DELETE, OPTIONS'
+  );
+  next();
+});
 
 require('dotenv').config();
 app.use(cors());
@@ -25,6 +40,39 @@ app.post("/api/chatGPT", async (req, res) => {
   res.json({ message: chatCompletion.choices[0].message });
 });
 
+
+app.post("/api/CarbonEmissions", async (req, res, next)=>{
+  let {make, model, miles} = req.body;
+
+  const encodedParams = new URLSearchParams();
+  encodedParams.set('vehicle_make', make);
+  encodedParams.set('vehicle_model', model);
+  encodedParams.set('distance_value', miles);
+  encodedParams.set('distance_unit', 'mi');
+
+  const options = {
+    method: 'POST',
+    url: 'https://carbonsutra1.p.rapidapi.com/vehicle_estimate_by_model',
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded',
+      Authorization: 'Bearer fQ98oU704xFvsnXcQLVDbpeCJHPglG1DcxiMLKfpeNEMGumlbzVf1lCI6ZBx',
+      'X-RapidAPI-Key': '5d894876a2mshf6015305a4edd4bp1a67a0jsnf4ea105ad680',
+      'X-RapidAPI-Host': 'carbonsutra1.p.rapidapi.com'
+    },
+    data: encodedParams,
+  };
+
+  try {
+    const response = await axios.request(options);
+    console.log(response.data);
+    res.json({response: response.data});
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+
 app.listen(8000, () => {
   console.log('Server is running on port 8000.');
 });
+

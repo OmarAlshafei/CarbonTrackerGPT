@@ -1,41 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../Components/Card.js';
-import ChatGPT from '../Components/ChatGPT.js';
 import './HomePage.css';
+import ChatGPT from '../Components/ChatGPT.js';
+import * as d3 from "d3";
+import axios from 'axios';
 
 function HomePage() {
-  const dayMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const [carbonScores, setCarbonScores] = useState([0, 0, 0, 0, 0, 0, 0]);
-  const [currDay, setCurrDay] = useState();
-  const [currMiles, setCurrMiles] = useState();
-  const [currVehicle, setCurrVehicle] = useState('SmallPetrolCar');
-  const [totalCarbonScore, setTotalCarbonScore] = useState(0);
-
+    const dayMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const [miles, setMiles] = useState([0, 0, 0, 0, 0, 0, 0]);
+    const [currDay, setCurrDay] = useState(0);
+    const [currMiles, setCurrMiles] = useState([]);
+    const [totalCarbonScore, setTotalCarbonScore] = useState(0);
+    const [currMake, setCurrMake] = useState('Ford');
+    const [currModel, setCurrModel] = useState('Focus');
+    const [currUnit, setCurrUnit] = useState('mi');
+    const baseURL = "https://jsonplaceholder.typicode.com/posts";
+  
+    
   const handleChange = (event) => {
-    setCurrMiles(event.target.value);
+    setCurrMiles(parseInt(event.target.value));
   };
 
-  const updateCarbonScore = () => {
-    const updatedCarbonScores = [...carbonScores];
-    const xhr = new XMLHttpRequest();
-    const url = `https://carbonfootprint1.p.rapidapi.com/CarbonFootprintFromCarTravel?distance=${currMiles}&vehicle=${currVehicle}`;
-    
-    xhr.open('GET', url);
-    xhr.setRequestHeader("X-RapidAPI-Key", "598410b6b1msh0c48f37c4144c83p171540jsnd394e28228cc");
-    xhr.setRequestHeader("X-RapidAPI-Host", "carbonfootprint1.p.rapidapi.com");
-    
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        const temp = JSON.parse(xhr.responseText);
-        updatedCarbonScores[currDay] = currMiles;
-        setCarbonScores(updatedCarbonScores);
-        setTotalCarbonScore(totalCarbonScore + temp.carbonEquivalent);
-      }
-    };
-    
-    xhr.send();
+
+  const setMilesForDay = () => {
+    const updatedMiles = [...miles];
+    updatedMiles[currDay] = currMiles;
+    setMiles(updatedMiles);
+    setCurrMiles(0);
   };
 
+  async function carbonScore() {
+    console.log(currMake);
+    console.log(currModel);
+    console.log(miles);
+    
+    let totalMiles = 0;
+    
+    //Add all of the miles
+    for(let i = 0; i < 7; i++){
+     totalMiles += miles[i];
+    }
+
+    console.log(totalMiles);
+    const response = await fetch('http://localhost:8000/api/CarbonEmissions',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              make: currMake,
+              model: currModel,
+              miles: totalMiles
+            }),
+    });
+
+    console.log(response);
+    
+    
+    // const encodedParams = new URLSearchParams();
+    // encodedParams.set('vehicle_make', currMake);
+    // encodedParams.set('vehicle_model', currModel);
+    // encodedParams.set('distance_value', totalMiles);
+    // encodedParams.set('distance_unit', 'mi');
+    
+    // const options = {
+    //   method: 'POST',
+    //   url: 'https://carbonsutra1.p.rapidapi.com/vehicle_estimate_by_model',
+    //   headers: {
+    //     'content-type': 'application/x-www-form-urlencoded',
+    //     'X-RapidAPI-Key': 'c8978ec990msh123912b707b02b7p159836jsn73eac02d58f3',
+    //     'X-RapidAPI-Host': 'carbonsutra1.p.rapidapi.com'
+    //   },
+    //   data: encodedParams,
+    // };
+    
+    // try {
+    //   const response = await axios.request(options);
+    //   console.log(response.data);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  }
+  
   return (
     <div id = "HomePage">
       
@@ -45,34 +91,26 @@ function HomePage() {
         <div className="homePage">
         <div className="calendar">
           {dayMap.map((day, index) => (
-            <Card key={index} day={day} carbonScore={carbonScores[index]} func={setCurrDay} curDay={index} />
+            <Card key={index} day={day} miles={miles[index]} func={setCurrDay} curDay={index} />
           ))}
         </div>
-        <h2 className="day">Enter Miles Driven on: {dayMap[currDay]}</h2>
+        <h2 className="day">Enter Commute For: {dayMap[currDay]}</h2>
         <div className="infoContainer">
           <div className="milesHandler">
           <input className='milesInput' type="number" value={currMiles} onChange={handleChange} />
-          </div>
-          <div className="carHandler">
-            <h3>Select Your Vehicle Type</h3>
-            <select className='vehicleSelect' name="cars" id="cars" value={currVehicle} onChange={(e) => setCurrVehicle(e.target.value)}>
-              <option value="SmallPetrolCar">Small Gas Car</option>
-              <option value="MediumPetrolCar">Medium Gas Car</option>
-              <option value="LargePetrolCar">Large Gas Car</option>
-              <option value="SmallDieselCar">Small Diesel Car</option>
-              <option value="MediumDieselCar">Medium Diesel Car</option>
-              <option value="LargeDieselCar">Large Diesel Car</option>
-              <option value="MediumHybridCar">Medium Hybrid Car</option>
-              <option value="LargeHybridCar">Large Hybrid Car</option>
-              <option value="SmallPetrolVan">Small Gas Van</option>
-              <option value="LargePetrolVan">Large Gas Van</option>
-              <option value="SmallDielselVan">Small Dielsel Van</option>
-              <option value="MediumDielselVan">Medium Dielsel Van</option>
-              <option value="LargeDielselVan">Large Dielsel Van</option>
+            <select className='unitSelect' value={currUnit} onChange={(e) => (e.target.value)}>
+              <option value="mi">mi</option>
+              <option value="km">km</option>
             </select>
+            <button type="set" onClick={setMilesForDay}>Set Miles</button>
+          </div>
+          <div className="vehicleHandler">
+            <h3>Enter Make and Model</h3>
+            <input className='makeInput' type="text" value={currMake} placeholder="Make" onChange={(e) => setCurrMake(e.target.value)} />
+            <input className='modelInput' type="text" value={currModel} placeholder="Model" onChange={(e) => setCurrModel(e.target.value)} />
           </div>
         </div>
-          <button id="submitButton" className="submit" onClick={updateCarbonScore}>Submit</button>
+        <button id="submitButton" className="submit" onClick={carbonScore}>Submit</button>
         <div className="carbonScoreContainer">
           <h3>Carbon Score: {totalCarbonScore.toFixed(2)}</h3>
         </div>
