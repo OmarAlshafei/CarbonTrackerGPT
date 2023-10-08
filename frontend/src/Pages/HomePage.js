@@ -77,8 +77,11 @@ function HomePage() {
           <h3>Carbon Score: {totalCarbonScore.toFixed(2)}</h3>
         </div>
       </div>
-      <div>
-      <ChatGPT prompt={"How can I reduce my personal carbon emissions?"}></ChatGPT>
+      <div id="borderGPT">
+        <h1 id="chatGPTTitle">Based on your carbon score here's how GPT can help you.</h1>
+        <div id="insideBorderGPT">
+        <ChatGPT prompt={"How can I reduce my personal carbon emissions?"}></ChatGPT>
+        </div>
       </div>
     </div>
   );
