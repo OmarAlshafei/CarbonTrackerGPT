@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Components/Card.js';
 import './HomePage.css';
-import ChatGPT from '../Components/ChatGPT.js';
 import axios from 'axios';
 
 function HomePage() {
