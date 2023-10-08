@@ -23,12 +23,9 @@ function HomePage() {
   
    
   function buildPath(route){
-      if(process.env.NODE_ENV === 'production'){
-          return 'https://' + app_name +'.ondigitalocean.app' + route;
-      }
-      else{
-          return 'http://localhost:8000' + route;
-      }
+      
+    return 'https://' + app_name +'.ondigitalocean.app' + route;
+
   }
   const handleChange = (event) => {
     setCurrMiles(parseInt(event.target.value));
