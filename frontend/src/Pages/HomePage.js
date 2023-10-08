@@ -28,7 +28,7 @@ function HomePage() {
     const updatedMiles = [...miles];
     updatedMiles[currDay] = currMiles;
     setMiles(updatedMiles);
-    setCurrMiles(0);
+    setCurrMiles([]);
   };
 
   async function carbonScore_callGPT(props) {
@@ -84,29 +84,6 @@ function HomePage() {
       
 
       setIsLoading(false);
-    // const encodedParams = new URLSearchParams();
-    // encodedParams.set('vehicle_make', currMake);
-    // encodedParams.set('vehicle_model', currModel);
-    // encodedParams.set('distance_value', totalMiles);
-    // encodedParams.set('distance_unit', 'mi');
-    
-    // const options = {
-    //   method: 'POST',
-    //   url: 'https://carbonsutra1.p.rapidapi.com/vehicle_estimate_by_model',
-    //   headers: {
-    //     'content-type': 'application/x-www-form-urlencoded',
-    //     'X-RapidAPI-Key': 'c8978ec990msh123912b707b02b7p159836jsn73eac02d58f3',
-    //     'X-RapidAPI-Host': 'carbonsutra1.p.rapidapi.com'
-    //   },
-    //   data: encodedParams,
-    // };
-    
-    // try {
-    //   const response = await axios.request(options);
-    //   console.log(response.data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
   }
   
   return (
@@ -116,6 +93,9 @@ function HomePage() {
           <h1 id="titleHome">Carbon Tracker <font color="2abe31">GPT</font></h1>
       </div>
         <div className="homePage">
+          <div>
+            <p id="paragraph">Learn about your carbon footprint by entering details about your weekly commute. Click on each day of the week to record your daily mileage and specify your vehicle's make and model.</p>
+          </div>
         <div className="calendar">
           {dayMap.map((day, index) => (
             <Card key={index} day={day} miles={miles[index]} func={setCurrDay} curDay={index} />

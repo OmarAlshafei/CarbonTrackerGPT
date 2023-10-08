@@ -1,9 +1,10 @@
-.calendar{
-    display: flex;
-    color: white;
-    justify-content: space-evenly;
-    margin-bottom: 2em;
+body {
+    background-color: #1D1E23;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
 }
+
 .appTitle{
     width: 100%;
     height: 80px;
@@ -19,15 +20,16 @@
 
 .homePage {
     width: 85%;
+    margin: 80px auto;
     padding: 20px;
     background-color: #f0f0f0;
-    margin: 80px auto; 
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 5px;
-    height: 500px;
+    min-height: 500px;
 }
+
 .submit {
     color: #ffffff;
     padding: 15px 30px;
@@ -51,6 +53,15 @@
     font-size: 1em;
     margin-top: 25px;
 }
+
+.submit:hover {
+    background-color: #202020;
+}
+
+.submit:active {
+    background-color: #161616;
+}
+
 .card {
     width: 10em;
     height: 5em;
@@ -66,19 +77,32 @@
     margin-left: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.milesContainer{
+
+
+.milesContainer {
     text-align: center;
 }
-
-h2,h3{
+Honda
+h2, h3 {
     text-align: center;
     padding: 15px;
     font-size: 1em;
     color: #333333;
 }
 
-.infoContainer{
+.infoContainer {
     text-align: center;
+}
+
+.milesInput, .vehicleSelect, .modelInput, .makeInput, .unitSelect {
+    background-color: white;
+    font-size: 20px;
+    width: 230px;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;
 }
 
 button:hover {
@@ -90,64 +114,6 @@ button:active {
     background-color: #19811e;
 }
 
-#submitButton:hover {
-    background-color: #202020;
-    cursor: pointer;
-}
-
-#submitButton:active {
-    background-color: #161616;
-}
-
-.milesInput {
-    font-size: 20px;
-    width: 230px;
-    height: 50px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    margin-right: 10px;
-}
-.vehicleSelect {
-    background-color: white;
-    font-size: 20px;
-    width: 230px;
-    height: 50px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    margin-right: 10px;
-}
-.modelInput {
-    background-color: white;
-    font-size: 20px;
-    width: 230px;
-    height: 50px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    margin-right: 10px;
-}
-.makeInput {
-    background-color: white;
-    font-size: 20px;
-    width: 230px;
-    height: 50px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    margin-right: 10px;
-}
-.unitSelect {
-    background-color: white;
-    font-size: 20px;
-    width: 70px;
-    height: 50px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    margin-right: 10px;
-}
 
 #smButton{
     background-color: white;
@@ -174,17 +140,22 @@ button:active {
     font-size: 1em;
 }
 
-#smButton:hover {
-    background-color: #202020;
-    cursor: pointer;
+#smButton:hover {.appTitle{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    padding-top: 35px;
+}
 }
 
 #smButton:active {
     background-color: #161616;
-}
-
-body{
-    background-color: #1D1E23;
 }
 
 #chatGPTTitle{
