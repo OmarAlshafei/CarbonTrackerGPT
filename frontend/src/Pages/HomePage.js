@@ -3,7 +3,7 @@ import Card from '../Components/Card.js';
 import './HomePage.css';
 import axios from 'axios';
 
-const app_name = 'carbontrackergpt-9guk7';
+const app_name = 'king-prawn-app-77twu';
 
 function HomePage() {
     const dayMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
