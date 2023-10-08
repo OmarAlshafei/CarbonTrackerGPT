@@ -16,7 +16,7 @@ function HomePage() {
     const [currUnit, setCurrUnit] = useState('mi');
     const baseURL = "https://jsonplaceholder.typicode.com/posts";
   
-  
+    
   const handleChange = (event) => {
     setCurrMiles(parseInt(event.target.value));
   };
@@ -42,30 +42,44 @@ function HomePage() {
     }
 
     console.log(totalMiles);
-    const encodedParams = new URLSearchParams();
-    encodedParams.set('vehicle_make', currMake);
-    encodedParams.set('vehicle_model', currModel);
-    encodedParams.set('distance_value', totalMiles);
-    encodedParams.set('distance_unit', currUnit);
+    const response = await fetch('http://localhost:8000/api/CarbonEmissions',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              make: currMake,
+              model: currModel,
+              miles: totalMiles
+            }),
+    });
+
+    console.log(response);
     
-    const options = {
-      method: 'POST',
-      url: 'https://carbonsutra1.p.rapidapi.com/vehicle_estimate_by_model',
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded',
-        Authorization: 'Bearer fQ98oU704xFvsnXcQLVDbpeCJHPglG1DcxiMLKfpeNEMGumlbzVf1lCI6ZBx',
-        'X-RapidAPI-Key': 'c8978ec990msh123912b707b02b7p159836jsn73eac02d58f3',
-        'X-RapidAPI-Host': 'carbonsutra1.p.rapidapi.com'
-      },
-      data: encodedParams,
-    };
     
-    try {
-      const response = await axios.request(options);
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+    // const encodedParams = new URLSearchParams();
+    // encodedParams.set('vehicle_make', currMake);
+    // encodedParams.set('vehicle_model', currModel);
+    // encodedParams.set('distance_value', totalMiles);
+    // encodedParams.set('distance_unit', 'mi');
+    
+    // const options = {
+    //   method: 'POST',
+    //   url: 'https://carbonsutra1.p.rapidapi.com/vehicle_estimate_by_model',
+    //   headers: {
+    //     'content-type': 'application/x-www-form-urlencoded',
+    //     'X-RapidAPI-Key': 'c8978ec990msh123912b707b02b7p159836jsn73eac02d58f3',
+    //     'X-RapidAPI-Host': 'carbonsutra1.p.rapidapi.com'
+    //   },
+    //   data: encodedParams,
+    // };
+    
+    // try {
+    //   const response = await axios.request(options);
+    //   console.log(response.data);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }
   
   return (

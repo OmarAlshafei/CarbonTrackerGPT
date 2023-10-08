@@ -4,6 +4,20 @@ const cors = require("cors");
 const app = express();
 const OpenAI = require('openai');
 const axios = require('axios');
+app.use(cors());
+app.use((req, res, next) =>
+{
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+  'Access-Control-Allow-Headers',
+  'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.setHeader(
+  'Access-Control-Allow-Methods',
+  'GET, POST, PATCH, DELETE, OPTIONS'
+  );
+  next();
+});
 
 require('dotenv').config();
 app.use(cors());
@@ -27,7 +41,7 @@ app.post("/api/chatGPT", async (req, res) => {
 });
 
 
-app.post("/api/CarbonEmissions", async (req, res)=>{
+app.post("/api/CarbonEmissions", async (req, res, next)=>{
   let {make, model, miles} = req.body;
 
   const encodedParams = new URLSearchParams();
@@ -42,7 +56,7 @@ app.post("/api/CarbonEmissions", async (req, res)=>{
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
       Authorization: 'Bearer fQ98oU704xFvsnXcQLVDbpeCJHPglG1DcxiMLKfpeNEMGumlbzVf1lCI6ZBx',
-      'X-RapidAPI-Key': 'c8978ec990msh123912b707b02b7p159836jsn73eac02d58f3',
+      'X-RapidAPI-Key': '5d894876a2mshf6015305a4edd4bp1a67a0jsnf4ea105ad680',
       'X-RapidAPI-Host': 'carbonsutra1.p.rapidapi.com'
     },
     data: encodedParams,
@@ -51,7 +65,7 @@ app.post("/api/CarbonEmissions", async (req, res)=>{
   try {
     const response = await axios.request(options);
     console.log(response.data);
-    res.json({response: response}).
+    res.json({response: response.data});
   } catch (error) {
     console.error(error);
   }
