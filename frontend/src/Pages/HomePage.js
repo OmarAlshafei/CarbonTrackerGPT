@@ -9,8 +9,8 @@ function HomePage() {
     const [currDay, setCurrDay] = useState(0);
     const [currMiles, setCurrMiles] = useState([]);
     const [totalCarbonScore, setTotalCarbonScore] = useState(0);
-    const [currMake, setCurrMake] = useState('Ford');
-    const [currModel, setCurrModel] = useState('Focus');
+    const [currMake, setCurrMake] = useState('');
+    const [currModel, setCurrModel] = useState('');
     const [currUnit, setCurrUnit] = useState('mi');
     const baseURL = "https://jsonplaceholder.typicode.com/posts";
     const [responseGPT, setResponseGPT] = useState('');
@@ -68,7 +68,7 @@ function HomePage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          prompt: "Hello",
+          prompt: "Based on my carbon score which is ${response} tell me whether that is high or low on average and tell me steps to improve",
         }),
       });
   
@@ -117,11 +117,7 @@ function HomePage() {
         <h2 className="day">Enter Commute For: {dayMap[currDay]}</h2>
         <div className="infoContainer">
           <div className="milesHandler">
-          <input className='milesInput' type="number" value={currMiles} onChange={handleChange} />
-            <select className='unitSelect' value={currUnit} onChange={(e) => (e.target.value)}>
-              <option value="mi">mi</option>
-              <option value="km">km</option>
-            </select>
+          <input className='milesInput' type="number" min="0" value={currMiles} placeholder="Miles" onChange={handleChange} />
             <button id="smButton" type="set" onClick={setMilesForDay}>Set Miles</button>
           </div>
           <div className="vehicleHandler">
