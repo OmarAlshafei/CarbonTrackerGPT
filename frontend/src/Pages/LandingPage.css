@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 #startButton{
     display:flex;
     top: 50vh;
@@ -8,6 +9,7 @@
     width: 150px;
     border-radius: 20px;
     text-align: center;
+    margin: auto;
 }
 
 #buttonText{
