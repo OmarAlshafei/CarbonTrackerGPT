@@ -67,7 +67,7 @@ function HomePage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          prompt: "Hello",
+          prompt: "Based on my carbon score which is ${response} tell me whether that is high or low on average and tell me steps to improve",
         }),
       });
   
