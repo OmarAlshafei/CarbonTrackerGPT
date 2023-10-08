@@ -148,7 +148,8 @@ button:active {
     padding: 5px;
     margin-right: 10px;
 }
-button{
+
+#smButton{
     background-color: white;
     height: 50px;
     border: 1px solid #ccc;
@@ -172,6 +173,16 @@ button{
     font-weight: 600;
     font-size: 1em;
 }
+
+#smButton:hover {
+    background-color: #202020;
+    cursor: pointer;
+}
+
+#smButton:active {
+    background-color: #161616;
+}
+
 body{
     background-color: #1D1E23;
 }

@@ -14,6 +14,9 @@ function HomePage() {
     const [currModel, setCurrModel] = useState('Focus');
     const [currUnit, setCurrUnit] = useState('mi');
     const baseURL = "https://jsonplaceholder.typicode.com/posts";
+    const [responseGPT, setResponseGPT] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [buttonClicked, setButtonClicked] = useState(false); 
   
     
   const handleChange = (event) => {
@@ -28,7 +31,7 @@ function HomePage() {
     setCurrMiles(0);
   };
 
-  async function carbonScore() {
+  async function carbonScore_callGPT(props) {
     console.log(currMake);
     console.log(currModel);
     console.log(miles);
@@ -55,7 +58,24 @@ function HomePage() {
 
     console.log(response);
     
-    
+    setIsLoading(true);
+      setButtonClicked(true); 
+  
+      const responseGPT = await fetch('http://localhost:8000/api/chatGPT', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: "Hello",
+        }),
+      });
+  
+      const data = await responseGPT.json();
+      console.log(data);
+      setResponseGPT(data.message.content);
+  
+      setIsLoading(false);
     // const encodedParams = new URLSearchParams();
     // encodedParams.set('vehicle_make', currMake);
     // encodedParams.set('vehicle_model', currModel);
@@ -101,7 +121,7 @@ function HomePage() {
               <option value="mi">mi</option>
               <option value="km">km</option>
             </select>
-            <button type="set" onClick={setMilesForDay}>Set Miles</button>
+            <button id="smButton" type="set" onClick={setMilesForDay}>Set Miles</button>
           </div>
           <div className="vehicleHandler">
             <h3>Enter Make and Model</h3>
@@ -109,7 +129,7 @@ function HomePage() {
             <input className='modelInput' type="text" value={currModel} placeholder="Model" onChange={(e) => setCurrModel(e.target.value)} />
           </div>
         </div>
-        <button id="submitButton" className="submit" onClick={carbonScore}>Submit</button>
+        <button id="submitButton" className="submit" onClick={carbonScore_callGPT}>Submit</button>
         <div className="carbonScoreContainer">
           <h3>Carbon Score: {totalCarbonScore.toFixed(2)}</h3>
         </div>
@@ -117,7 +137,18 @@ function HomePage() {
       <div id="borderGPT">
         <h1 id="chatGPTTitle">Based on your carbon score here's how GPT can help you.</h1>
         <div id="insideBorderGPT">
-        <ChatGPT prompt={"How can I reduce my personal carbon emissions?"}></ChatGPT>
+          
+        <div id="ChatGPT">
+        {isLoading ? (
+          <h1 id="loadingGPT">Loading...</h1>
+        ) : (
+        responseGPT && (
+          <div id="textboxGPT">
+            <p id="responseGPT">{responseGPT}</p>
+          </div>
+        )
+      )}
+    </div>
         </div>
       </div>
     </div>
