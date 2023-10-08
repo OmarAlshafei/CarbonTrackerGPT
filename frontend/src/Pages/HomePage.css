@@ -265,3 +265,17 @@ body{
     margin-top: 350px;
     color: #f0f0f0;
 }
+
+#emissionDesc{
+    color: white;
+    font-size: 16px;
+    width: 90vw;
+    margin:auto;
+}
+
+#emissionAmount{
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    margin:auto;
+}

@@ -16,6 +16,7 @@ function HomePage() {
     const [responseGPT, setResponseGPT] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [buttonClicked, setButtonClicked] = useState(false); 
+    const [carbonEmissions, setCarbonEmissions] = useState([]);
   
     
   const handleChange = (event) => {
@@ -57,10 +58,12 @@ function HomePage() {
 
     const datacarbon = await response.json()
     
-    console.log(datacarbon.data);
-
-
+    console.log(datacarbon.data.data.co2e_kg);
+    setCarbonEmissions(datacarbon.data.data.co2e_kg);
     
+
+    document.getElementById("emissionDesc").innerText = "Your carbon emissions from the past week are "+ datacarbon.data.data.co2e_kg +"CO2E kg. Your carbon emissions in a year will be "+datacarbon.data.data.co2e_kg * 52 +"CO2E kg. This is equivalent to "+(datacarbon.data.data.co2e_kg * 52)/1900+" cars in mass. This also does not factor the amount of carbon emissions from your consumption of food, electricity, or goods and services. The average person from the United States emits 16 metric tons of carbon emissions per year.  ";
+    document.getElementById("emissionAmount").innerText = datacarbon.data.data.co2e_kg + " CO2E kg";
     setIsLoading(true);
       setButtonClicked(true); 
   
@@ -76,8 +79,10 @@ function HomePage() {
   
       const data = await responseGPT.json();
       console.log(data);
+
       setResponseGPT(data.message.content);
-  
+      
+
       setIsLoading(false);
     // const encodedParams = new URLSearchParams();
     // encodedParams.set('vehicle_make', currMake);
@@ -130,19 +135,21 @@ function HomePage() {
         </div>
         <button id="submitButton" className="submit" onClick={carbonScore_callGPT}>Submit</button>
         <div className="carbonScoreContainer">
-          <h3>Carbon Score: {totalCarbonScore.toFixed(2)}</h3>
         </div>
       </div>
+      <h1 id= "emissionAmount"></h1>
+      <p id="emissionDesc"></p>
       <div id="borderGPT">
         <h1 id="chatGPTTitle">Based on your carbon score here's how GPT can help you.</h1>
         <div id="insideBorderGPT">
-          
+        
         <div id="ChatGPT">
         {isLoading ? (
           <h1 id="loadingGPT">Loading...</h1>
         ) : (
         responseGPT && (
           <div id="textboxGPT">
+            
             <p id="responseGPT">{responseGPT}</p>
           </div>
         )
