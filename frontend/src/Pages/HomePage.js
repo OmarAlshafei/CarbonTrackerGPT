@@ -24,7 +24,7 @@ function HomePage() {
    
   function buildPath(route){
       
-    return 'https://localhost:8080' + route;
+    return 'https://seashell-app-j4qex.ondigitalocean.app' + route;
 
   }
   const handleChange = (event) => {
