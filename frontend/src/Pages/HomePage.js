@@ -3,6 +3,8 @@ import Card from '../Components/Card.js';
 import './HomePage.css';
 import axios from 'axios';
 
+const app_name = 'carbontrackergpt-9guk7';
+
 function HomePage() {
     const dayMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const [miles, setMiles] = useState([0, 0, 0, 0, 0, 0, 0]);
@@ -20,7 +22,14 @@ function HomePage() {
     const [carbonEmissions, setCarbonEmissions] = useState([]);
   
    
-
+  function buildPath(route){
+      if(process.env.NODE_ENV === 'production'){
+          return 'https://' + app_name +'.ondigitalocean.app' + route;
+      }
+      else{
+          return 'http://localhost:8000' + route;
+      }
+  }
   const handleChange = (event) => {
     setCurrMiles(parseInt(event.target.value));
   };
@@ -46,7 +55,7 @@ function HomePage() {
     }
 
     console.log(totalMiles);
-    const response = await fetch('http://localhost:8000/api/CarbonEmissions',{
+    const response = await fetch(buildPath('/api/CarbonEmissions'),{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,7 +84,7 @@ function HomePage() {
     setIsLoading(true);
       setButtonClicked(true); 
   
-      const responseGPT = await fetch('http://localhost:8000/api/chatGPT', {
+      const responseGPT = await fetch(buildPath('/api/chatGPT'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
