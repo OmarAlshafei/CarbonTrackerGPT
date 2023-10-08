@@ -55,8 +55,8 @@ app.post("/api/CarbonEmissions", async (req, res, next)=>{
     url: 'https://carbonsutra1.p.rapidapi.com/vehicle_estimate_by_model',
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
-      Authorization: 'Bearer fQ98oU704xFvsnXcQLVDbpeCJHPglG1DcxiMLKfpeNEMGumlbzVf1lCI6ZBx',
-      'X-RapidAPI-Key': '5d894876a2mshf6015305a4edd4bp1a67a0jsnf4ea105ad680',
+      Authorization: process.env.CARBON_AUTH,
+      'X-RapidAPI-Key': process.env.CARBON_API_KEY,
       'X-RapidAPI-Host': 'carbonsutra1.p.rapidapi.com'
     },
     data: encodedParams,
