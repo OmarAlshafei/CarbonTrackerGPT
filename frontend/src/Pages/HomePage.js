@@ -53,7 +53,7 @@ function HomePage() {
     for(let i = 0; i < 7; i++){
      totalMiles += miles[i];
     }
-
+    console.log(buildPath('/api/CarbonEmissions'))
     console.log(totalMiles);
     const response = await fetch(buildPath('/api/CarbonEmissions'),{
             method: 'POST',
