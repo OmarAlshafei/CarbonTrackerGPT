@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const OpenAI = require('openai');
+const port = process.env.PORT || 8000;
 const axios = require('axios');
 app.use(cors());
 app.use((req, res, next) =>
@@ -21,6 +22,9 @@ app.use((req, res, next) =>
 
 require('dotenv').config();
 app.use(cors());
+app.use(cors({
+  origin: ['https://carbontrackergpt-xe3it.ondigitalocean.app/', 'http://localhost:3000/', 'http://localhost:8000/']
+}));
 app.set('port', (process.env.PORT || 8000));
 app.use(express.json());
 
