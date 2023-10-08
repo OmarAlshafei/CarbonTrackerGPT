@@ -3,7 +3,7 @@ import Card from '../Components/Card.js';
 import './HomePage.css';
 import axios from 'axios';
 
-const app_name = 'seashell-app-j4qex';
+const app_name = 'coral-app-39hhw';
 
 function HomePage() {
     const dayMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -24,7 +24,7 @@ function HomePage() {
    
   function buildPath(route){
       
-    return 'https://seashell-app-j4qex.ondigitalocean.app' + route;
+    return 'https://coral-app-39hhw.ondigitalocean.app' + route;
 
   }
   const handleChange = (event) => {
