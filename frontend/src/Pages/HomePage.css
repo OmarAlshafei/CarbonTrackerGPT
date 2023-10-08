@@ -250,3 +250,20 @@ button:active {
     text-align: center;
     margin:auto;
 }
+
+
+#paragraph {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #333333;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-family: "Inter", sans-serif;
+    font-style: italic;
+    font-weight: 500;
+  }
