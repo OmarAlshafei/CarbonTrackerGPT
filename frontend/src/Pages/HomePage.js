@@ -123,10 +123,14 @@ function HomePage() {
         <div className="carbonScoreContainer">
         </div>
       </div>
+      <div ref={responseRef}>
+      </div>
       <h1 id= "emissionAmount"></h1>
       <p id="emissionDesc"></p>
-      <div id="borderGPT" ref={responseRef}>
-        <h1 id="chatGPTTitle">Based on your carbon score here's how GPT can help you.</h1>
+      <div id="borderGPT">
+        <div>
+          <h1 id="chatGPTTitle">Based on your carbon score here's how GPT can help you.</h1>
+        </div>
         <div id="insideBorderGPT">
         
         <div id="ChatGPT">
