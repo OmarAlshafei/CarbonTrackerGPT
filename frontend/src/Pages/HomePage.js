@@ -24,7 +24,7 @@ function HomePage() {
    
   function buildPath(route){
       
-    return 'https://' + app_name +'.ondigitalocean.app' + route;
+    return 'https://localhost8080' + route;
 
   }
   const handleChange = (event) => {
